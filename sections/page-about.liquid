@@ -1,10 +1,47 @@
 <div class="content-for-layout focus-none">
-<div><h1>About</h1></div>
+  <div>
+    <h1>{{ section.settings.title }}</h1>
+  </div>
 
-<div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum bibendum justo id convallis condimentum. Integer sapien ligula, ultrices ac felis sit amet, euismod tincidunt est. Suspendisse iaculis consectetur massa, eu feugiat elit sodales id. Nullam sit amet suscipit felis. Proin sed rhoncus lectus. Proin vitae vehicula nunc. Sed pharetra nisi eget egestas blandit.</p>
+  <div>
+    <p>{{ section.settings.paragraph }}</p>
+  </div>
+
+  <div>
+    <img src="{{ section.settings.image_with_text_image | image_url: width: 1500 }}" alt="">
+
+  </div>
+
 </div>
 
-</div>
+{% render 'my-snippets' %}
 
-<style> div .content-for-layout.focus-none { padding: 0 30vw;}</style>
+<style>
+  div .content-for-layout.focus-none {
+    padding: 0 30vw;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Section Maria",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }, {
+        "type": "image_picker",
+        "id": "image_with_text_image",
+        "label": "Image"
+      }, {
+        "type": "richtext",
+        "id": "paragraph",
+        "label": "Paragraph"
+
+      }
+    ]
+
+  }
+{% endschema %}
