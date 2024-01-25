@@ -1,0 +1,59 @@
+<div class="grid-title">
+  <h2>{{ collection.title }}</h2>
+</div>
+
+<div class=" grid">
+  {% for item in collection.products %}
+
+    <div class="grid-item">
+      <a href="/products/{{ item.handle }}"><img src="{{item.images[0] | image_url: width: 200}}" alt=""></a>
+      <a href="/products/{{ item.handle }}">
+        <h5>{{ item.title }}</h5>
+      </a>
+      <p>
+        {{ item.variants.first.price | money }}
+        {{ item.options_by_name['color'].values }}
+        {{ item.variants[0].inventory_quantity }}
+        {% if item.variants[0].inventory_quantity < 5 %}
+          Last Item
+        {% endif %}
+      </p>
+    </div>
+
+
+  {% endfor %}
+
+</div>
+
+{% style %}
+
+  .grid-title h2 {
+    font-size: 50px;
+    font-weight: regular;
+    margin: 2rem 0;
+    padding: 10px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+    padding: 1.3rem;
+  }
+
+  .grid-item h5 {
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 1.3rem;
+  }
+
+  .grid-item p {
+    text-align: center;
+    padding: 5px 20px;
+
+  }
+
+  .grid-item img {
+    width: 100%;
+  }
+{% endstyle %}
