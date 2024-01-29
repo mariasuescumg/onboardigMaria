@@ -96,7 +96,7 @@
         "collapsible_tab_JAxh77": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "video youtube",
+            "heading": "video",
             "icon": "check_mark",
             "content": "<p>{{ product.metafields.custom.video.value }}<\/p>",
             "page": ""
