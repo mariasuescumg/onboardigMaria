@@ -101,6 +101,15 @@
             "content": "<p>{{ product.metafields.custom.video.value }}<\/p>",
             "page": ""
           }
+        },
+        "collapsible_tab_TfbGA3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "anuncio",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.anuncio.value }}<\/p>",
+            "page": ""
+          }
         }
       },
       "block_order": [
@@ -117,7 +126,8 @@
         "collapsible-row-2",
         "collapsible-row-3",
         "share",
-        "collapsible_tab_JAxh77"
+        "collapsible_tab_JAxh77",
+        "collapsible_tab_TfbGA3"
       ],
       "settings": {
         "enable_sticky_info": true,
