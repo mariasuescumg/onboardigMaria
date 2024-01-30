@@ -1,0 +1,180 @@
+
+#quantity {
+    width: 3%;
+  }
+
+  .add-to-cart-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    background-color: #17696A;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .btn i {
+    margin-right: 8px;
+    gap: 2px;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+
+
+  .color-input {
+    display: none;
+  }
+
+  .color-input:checked + label {
+    border: 2px solid red;
+    padding: 2px;
+
+  }
+
+  .color-container,
+  .size-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .color-selector,
+  .size-tag {
+    display: inline-block;
+    margin: 5px;
+  }
+
+  .color-selector {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 1px solid #000;
+  }
+
+  .color-selector.white {
+    background-color: white;
+
+  }
+
+  .color-selector.black {
+    background-color: black;
+  }
+
+  .color-selector.grey {
+    background-color: grey;
+  }
+
+
+  .size-input {
+    display: none;
+  }
+
+  .size-input:checked + label {
+    background: grey;
+    padding: 8px 12px;
+    margin: 0 5px;
+
+  }
+
+  .size-tag {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .size-tag:hover {
+    background-color: #f0f0f0;
+  }
+
+  .swiper {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  }
+
+  .swiper-2{
+    margin-top:auto;
+  }
+
+  .title-product h1 {
+  font-size: 16px;
+  font-weight: bold;
+
+  }
+
+  .title-product{
+    margin-left: 2em;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1em;
+    padding-left: 10em ;
+  }
+
+  .title-product h1 span {
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+    
+    
+  }
+ 
+
+  .swiper-slide img {
+    width: 100%;
+    height: auto;
+  }
+
+  .container_product {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  .swiper-container-1{
+    width: 50%;
+  }
+
+  .swiper-container-2{
+    width: 50%;
+  }
+
+  .swiper.mySwiper {
+
+    margin-top: 10px;
+  }
+
+  .metafields-video{
+
+    margin: 1em;
+  }
+  
+  .social-sharing  a img {
+    margin: 0 0.3em;
+ }
+  
+ .metafields-upsell{
+
+    display:flex;
+    justify-content: space-between;
+    margin-top: -25vh;
+    padding: 0 10em;
+    border : solid 1px gray;
+    
+ }
+
+  

@@ -1,0 +1,312 @@
+{{ 'main-product-sale.css' | asset_url | stylesheet_tag }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<!-- Variantes-->
+<select
+  class="hidden"
+  name=""
+  id="variants-selector">
+  {% for variant in product.variants %}
+    <option
+      size="{{ variant.option1 }}"
+      color="{{ variant.option2 }}"
+      value="{{ variant.id }}">
+      {{ variant | json }}
+    </option>
+  {% endfor %}
+
+</select>
+
+<div class="title-product">
+
+  <h1 id="product_title">{{ product.title }}
+    <span>
+      {{ product.metafields.custom.anuncio }}</span>
+  </h1>
+
+
+</div>
+
+
+<div class="container_product">
+
+
+  <div class="swiper-container-1">
+
+    <div class="swiper mySwiper-1 ">
+
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+          <div class="swiper-slide">
+            <img src="{{ image.src | product_img_url: 'medium' }}" alt="{{ image.alt }}" />
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <div thumbsSlider="" class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+          <div class="swiper-slide">
+            <img src="{{ image.src | product_img_url: 'medium' }}" alt="{{ image.alt }}" />
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+  <div id="main" class="swiper-container-2">
+
+    <!-- price prduct -->
+
+    <div class="product-price">
+      {% if product.price_min < product.compare_at_price_max %}
+        <span class="discounted-price" style="color: red; font-weight: bold; font-size: mediun">{{ product.price_min | money }}</span>
+        <span class="original-price" style="text-decoration: line-through; font-size: small">{{ product.compare_at_price_max | money }}</span>
+        {% comment %}   <span class="discount-percentage">
+          {{ product.compare_at_price_max | minus: product.price_min | times: 100 | divided_by: product.compare_at_price_max | round }}% OFF
+        </span> {% endcomment %}
+      {% else %}
+        <span class="regular-price">{{ product.price | money }}</span>
+      {% endif %}
+
+    </div>
+
+
+    <!-- coloresn -->
+
+    <div>
+      <span>Color</span>
+    </div>
+    <div class="color-container">
+      {% for color in product.options_by_name['Color'].values %}
+
+        <input
+          type="radio"
+          name="color-1"
+          value="{{color}}"
+          {% if forloop.first %}checked{% endif %}
+          id="{{color}}"
+          class="color-input">
+        <label
+          for="{{color}}"
+          class="color-selector"
+          style="background-color:{{ color | downcase }}"></label>
+
+      {% endfor %}
+    </div>
+
+
+    <!-- size -->
+    <div>
+      <span>Size</span>
+    </div>
+    <div class="size-container">
+
+      {% for size in product.options_by_name['Size'].values %}
+        <input
+          type="radio"
+          id="{{size}}"
+          name="size-1"
+          value="{{size}}"
+          class="size-input"
+          {% if forloop.first %}checked{% endif %}>
+        <label for="{{size}}" class="size-tag">{{ size }}</label>
+
+      {% endfor %}
+    </div>
+
+    <div class="selector-color-size">
+      <p>
+        <b>Color:</b>
+        <span id="select-color">{{ product.selected_or_first_available_variant.option2 }}
+        </span>
+        <br>
+        <b>Size:</b>
+        <span id="select-size">
+          {{ product.selected_or_first_available_variant.option1 }}
+        </span>
+      </p>
+    </div>
+
+    <div class="social-media">
+
+      <span>
+        Share:</span>
+
+      <div class="social-sharing">
+        <a href="{{ site_url }}/compartir/facebook">
+          <img
+            src="https://w7.pngwing.com/pngs/516/307/png-transparent-facebook-logo-youtube-social-media-facebook-logo-computer-icons-irina-shayk-celebrities-angle-like-button-thumbnail.png"
+            alt="Compartir en Facebook"
+            style="width: 25px;">
+        </a>
+
+        <a href="{{ site_url }}/compartir/twitter">
+          <img
+            src="https://icones.pro/wp-content/uploads/2021/02/icones-twitter-grises.png"
+            alt="Compartir en Twitter"
+            style="width: 25px;">
+        </a>
+
+        <a href="{{ site_url }}/compartir/twitter">
+          <img
+            src="https://icones.pro/wp-content/uploads/2021/07/icone-pinterest-gris.png"
+            alt="Compartir en Pinterest"
+            style="width: 25px;">
+        </a>
+
+      </div>
+
+      <div class="btn-formulario-cart">
+
+        <form
+          method="post"
+          action="/cart/add"
+          class="add-to-cart-form">
+          <input
+            type="hidden"
+            name="id"
+            class="variant-id-form"
+            value="{{ product.variants.first.id }}" />
+          <button type="submit" class="btn btn-add-to-cart">
+            <i class="fas fa-shopping-cart"></i>
+            Add to Cart
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="metafields-video">
+      {{ product.metafields.custom.video }}
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="metafields-upsell">
+
+  {% for item in product.metafields.custom.upsell.value %}
+
+    <div clase="img_metafields">
+      <a href="/products/{{ item.handle }}">
+
+        {{ item | img_url: 'medium' | img_tag }}
+        <p>{{ item.title | json }}</p>
+      </a>
+
+    </div>
+  {% endfor %}
+</div>
+
+
+<script>
+
+  const swiper2 = new Swiper('.mySwiper', {
+
+    direction: 'horizontal',
+    loop: true,
+    spaceBetween: 10,
+    slidesPerView: 4
+
+  });
+
+  const swiper = new Swiper('.mySwiper-1', {
+
+    direction: 'horizontal',
+    loop: true,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+
+    scrollbar: {
+      el: '.swiper-scrollbar'
+    },
+
+    thumbs: {
+      swiper: swiper2
+    }
+  });
+
+  /* variables*/
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+    let selectOptions = {
+      size: '',
+      color: ''
+    }
+
+    function setSelectedOptions() {
+      if (selectOptions.size != '' && selectOptions.color != '') {
+
+        let variantSelector = document.querySelector('#variants-selector');
+        let variantId = variantSelector.querySelector(`[size="${
+          selectOptions.size
+        }"][color="${
+          selectOptions.color
+        }"]`).value;
+        document.querySelector(".variant-id-form").value = variantId;
+      }
+    }
+
+
+    const colorInputs = document.querySelectorAll('input.color-input');
+
+    colorInputs.forEach((color) => {
+      color.addEventListener("click", () => {
+
+        selectOptions.color = color
+          .value
+          console
+          .log(selectOptions)
+          setSelectedOptions()
+          document
+          .getElementById('select-color')
+          .innerHTML = color.value
+      })
+    });
+
+
+    const sizeInputs = document.querySelectorAll('input.size-input');
+
+    sizeInputs.forEach((size) => {
+      size.addEventListener("click", () => {
+        selectOptions.size = size
+          .value
+          console
+          .log(selectOptions)
+          setSelectedOptions()
+          document
+          .getElementById('select-size')
+          .innerHTML = size.value
+      })
+    })
+
+
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "Main Product Sale",
+    "tag": "section",
+    "class": "section"
+  }
+{% endschema %}
