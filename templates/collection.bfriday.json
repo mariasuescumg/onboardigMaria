@@ -1,12 +1,15 @@
 {
   "sections": {
     "banner": {
-      "type": "banner-collection"
+      "type": "banner-collection",
+      "settings": {
+        "title_banner_bfriday": "black friday",
+        "image_banner_bfriday": "shopify:\/\/shop_images\/97afebd3f0a2a8c05ad53cedbad803c9.jpg"
+      }
     },
     "product-grid": {
       "type": "product-collection",
       "settings": {
-        
       }
     }
   },
